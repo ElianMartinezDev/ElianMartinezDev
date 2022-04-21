@@ -5,22 +5,9 @@ module.exports = withTM({
   trailingSlash: true,
   env: {
     // HOST
-    HOST_API_KEY: 'https://minimal-assets-api-dev.vercel.app',
-    // MAPBOX
-    MAPBOX_API: '',
-    // FIREBASE
-    FIREBASE_API_KEY: '',
-    FIREBASE_AUTH_DOMAIN: '',
-    FIREBASE_PROJECT_ID: '',
-    FIREBASE_STORAGE_BUCKET: '',
-    FIREBASE_MESSAGING_SENDER_ID: '',
-    FIREBASE_APPID: '',
-    FIREBASE_MEASUREMENT_ID: '',
-    // AWS COGNITO
-    AWS_COGNITO_USER_POOL_ID: '',
-    AWS_COGNITO_CLIENT_ID: '',
-    // AUTH0
-    AUTH0_CLIENT_ID: '',
-    AUTH0_DOMAIN: '',
+    HOST_API_KEY: 'https://server.estacionsigma.com',
+    HOST_API2_KEY: 'https://ncf.estacionsigma.com',
+    //KEY_SECRET
+    APP_API: 'C9A1E9820472834883A7C8CA67EF62B66047B80DA652818819BB039830CD3E94',
   },
 });
