@@ -11,7 +11,7 @@ export default function Index() {
   const { pathname, replace, prefetch } = useRouter();
   console.log(pathname);
   useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === '/dashboard') {
       replace(PATH_AFTER_LOGIN);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
