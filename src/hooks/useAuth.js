@@ -1,18 +1,37 @@
-import { useContext } from 'react';
-//
-import { AuthContext } from '../contexts/JWTContext';
-// import { AuthContext } from '../contexts/Auth0Context';
-// import { AuthContext } from '../contexts/FirebaseContext';
-// import { AuthContext } from '../contexts/AwsCognitoContext';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+// redux
+import { errorlogin, login, logout } from '../redux/slices/authJwt';
 
 // ----------------------------------------------------------------------
-
-const useAuth = () => {
-  const context = useContext(AuthContext);
-
-  if (!context) throw new Error('Auth context must be use inside AuthProvider');
-
-  return context;
+useAuth.propTypes = {
+  method: PropTypes.oneOf(['jwt', 'firebase']),
 };
-
-export default useAuth;
+export default function useAuth() {
+  // JWT Auth
+  const dispatch = useDispatch();
+  const { user, roles, isLoading, isAuthenticated, isError } = useSelector((state) => state.authJwt);
+  // JWT Auth
+  return {
+    method: 'jwt',
+    user,
+    isLoading,
+    isAuthenticated,
+    isError,
+    roles,
+    login: (data) => {
+      dispatch(
+        login({
+          data,
+        })
+      );
+    },
+    errorLogin: (value) => {
+      dispatch(errorlogin(value));
+    },
+    logout: () => dispatch(logout()),
+    resetPassword: () => {},
+    updateProfile: () => {},
+  };
+}

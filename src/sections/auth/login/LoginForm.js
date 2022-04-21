@@ -16,6 +16,7 @@ import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
+import axiosInstance from '../../../utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +28,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
+    email: Yup.string().required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
 
@@ -49,9 +50,27 @@ export default function LoginForm() {
     formState: { errors, isSubmitting },
   } = methods;
 
+  const LogInAxios = async (username, password) => {
+    try {
+      const url = `/login/`;
+      const resp = await axiosInstance.post(url, {
+        user: username,
+        password,
+      });
+      console.log(resp);
+      if (resp.status !== 200) {
+        setError('afterSubmit', { message: 'Usuario o Password mal escritos' });
+      } else {
+        login(resp.data);
+      }
+    } catch (e) {
+      setError('afterSubmit', { ...e, message: e.message });
+    }
+  };
+
   const onSubmit = async (data) => {
     try {
-      await login(data.email, data.password);
+      await LogInAxios(data.email, data.password);
     } catch (error) {
       console.error(error);
 

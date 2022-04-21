@@ -38,14 +38,6 @@ import ProgressBar from '../components/ProgressBar';
 import NotistackProvider from '../components/NotistackProvider';
 import MotionLazyContainer from '../components/animate/MotionLazyContainer';
 
-// Check our docs
-// https://docs-minimals.vercel.app/authentication/ts-version
-
-import { AuthProvider } from '../contexts/JWTContext';
-// import { AuthProvider } from '../contexts/Auth0Context';
-// import { AuthProvider } from '../contexts/FirebaseContext';
-// import { AuthProvider } from '../contexts/AwsCognitoContext';
-
 // ----------------------------------------------------------------------
 
 MyApp.propTypes = {
@@ -65,27 +57,25 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 
-      <AuthProvider>
-        <ReduxProvider store={store}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <CollapseDrawerProvider>
-              <SettingsProvider defaultSettings={settings}>
-                <MotionLazyContainer>
-                  <ThemeProvider>
-                    <ThemeSettings>
-                      <NotistackProvider>
-                        <ChartStyle />
-                        <ProgressBar />
-                        {getLayout(<Component {...pageProps} />)}
-                      </NotistackProvider>
-                    </ThemeSettings>
-                  </ThemeProvider>
-                </MotionLazyContainer>
-              </SettingsProvider>
-            </CollapseDrawerProvider>
-          </LocalizationProvider>
-        </ReduxProvider>
-      </AuthProvider>
+      <ReduxProvider store={store}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <CollapseDrawerProvider>
+            <SettingsProvider defaultSettings={settings}>
+              <MotionLazyContainer>
+                <ThemeProvider>
+                  <ThemeSettings>
+                    <NotistackProvider>
+                      <ChartStyle />
+                      <ProgressBar />
+                      {getLayout(<Component {...pageProps} />)}
+                    </NotistackProvider>
+                  </ThemeSettings>
+                </ThemeProvider>
+              </MotionLazyContainer>
+            </SettingsProvider>
+          </CollapseDrawerProvider>
+        </LocalizationProvider>
+      </ReduxProvider>
     </>
   );
 }
