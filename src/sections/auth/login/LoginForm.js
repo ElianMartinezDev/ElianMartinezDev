@@ -57,7 +57,6 @@ export default function LoginForm() {
         user: username,
         password,
       });
-      console.log(resp);
       if (resp.status !== 200) {
         setError('afterSubmit', { message: 'Usuario o Password mal escritos' });
       } else {

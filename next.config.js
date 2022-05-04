@@ -7,6 +7,7 @@ module.exports = withTM({
     // HOST
     HOST_API_KEY: 'https://server.estacionsigma.com',
     HOST_API2_KEY: 'https://ncf.estacionsigma.com',
+    HOST_APP_NAME: 'CALIPSO 3.0',
     //KEY_SECRET
     APP_API: 'C9A1E9820472834883A7C8CA67EF62B66047B80DA652818819BB039830CD3E94',
   },

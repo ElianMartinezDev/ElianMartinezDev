@@ -31,7 +31,6 @@ GeneralApp.getLayout = function getLayout(page) {
 
 export default function GeneralApp() {
   // const { user } = useAuth();
-  console.log('hkkkk');
   const theme = useTheme();
 
   const { themeStretch } = useSettings();

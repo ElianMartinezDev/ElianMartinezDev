@@ -37,7 +37,7 @@ import { ChartStyle } from '../components/chart';
 import ProgressBar from '../components/ProgressBar';
 import NotistackProvider from '../components/NotistackProvider';
 import MotionLazyContainer from '../components/animate/MotionLazyContainer';
-
+import JwtProvider from '../providers/authProvider';
 // ----------------------------------------------------------------------
 
 MyApp.propTypes = {
@@ -65,9 +65,11 @@ export default function MyApp(props) {
                 <ThemeProvider>
                   <ThemeSettings>
                     <NotistackProvider>
-                      <ChartStyle />
-                      <ProgressBar />
-                      {getLayout(<Component {...pageProps} />)}
+                      <JwtProvider>
+                        <ChartStyle />
+                        <ProgressBar />
+                        {getLayout(<Component {...pageProps} />)}
+                      </JwtProvider>
                     </NotistackProvider>
                   </ThemeSettings>
                 </ThemeProvider>

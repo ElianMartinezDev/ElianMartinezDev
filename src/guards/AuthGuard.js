@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 // next
@@ -17,22 +18,26 @@ AuthGuard.propTypes = {
 
 export default function AuthGuard({ children }) {
   const { isAuthenticated, isLoading, roles } = useAuth();
-  const whitelist = [
+  const { pathname, push } = useRouter();
+  const [requestedLocation, setRequestedLocation] = useState(null);
+  var whiteList = [
     PATH_DASHBOARD.root,
     PATH_DASHBOARD.root + '/app',
     PATH_AUTH.login,
     PATH_PAGE.page404,
     PATH_PAGE.page500,
-    PATH_DASHBOARD.user,
   ];
-  if (roles) {
-    for (const rol of roles) {
-      whitelist.push(PATH_DASHBOARD.root + rol.ROUTE);
+  useEffect(() => {
+    if (roles) {
+      whiteList = [...whiteList, ...roles.map((r) => PATH_DASHBOARD.root + r.ROUTE)];
     }
-  }
-  const { pathname, push, replace } = useRouter();
+  }, [roles]);
 
-  const [requestedLocation, setRequestedLocation] = useState(null);
+  useEffect(() => {
+    if (!whiteList.includes(pathname)) {
+      push(PATH_DASHBOARD.permissionDenied);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (requestedLocation && pathname !== requestedLocation) {
@@ -54,13 +59,6 @@ export default function AuthGuard({ children }) {
     return <Login />;
   }
   //+1 829-341-6111
-  if (roles !== undefined) {
-    if (roles.length > 0) {
-      if (whitelist.indexOf(location.pathname) < 0) {
-        replace(PATH_PAGE.page404);
-      }
-    }
-  }
 
   return <>{children}</>;
 }

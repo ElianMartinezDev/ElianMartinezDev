@@ -1,7 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import configApp from '../../config';
+import axios from '../../utils/axios';
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -115,7 +114,7 @@ export function getInitialize() {
       const accessToken = window.localStorage.getItem('accessToken');
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
-        const url = `${configApp.baseUrl}/whome`;
+        const url = `/whome`;
         const response = await axios.get(url);
         dispatch(
           slice.actions.getInitialize({
