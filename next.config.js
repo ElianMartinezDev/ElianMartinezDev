@@ -6,6 +6,7 @@ module.exports = withTM({
   env: {
     // HOST
     HOST_API_KEY: 'https://server.estacionsigma.com',
+    //HOST 2
     HOST_API2_KEY: 'https://ncf.estacionsigma.com',
     HOST_APP_NAME: 'CALIPSO 3.0',
     //KEY_SECRET

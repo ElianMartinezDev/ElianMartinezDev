@@ -6,7 +6,7 @@ import { PATH_DASHBOARD } from './routes/paths';
 // API
 // ----------------------------------------------------------------------
 
-const configApp = {
+export const configApp = {
   baseUrl: process.env.HOST_API_KEY,
   baseUrl2: process.env.HOST_API2_KEY,
   nameApp: process.env.HOST_APP_NAME,
