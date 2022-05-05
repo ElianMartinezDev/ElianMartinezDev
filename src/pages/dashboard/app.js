@@ -2,7 +2,6 @@
 import { useTheme } from '@mui/material/styles';
 import { Container, Grid, Stack, Button } from '@mui/material';
 // hooks
-import useAuth from '../../hooks/useAuth';
 import useSettings from '../../hooks/useSettings';
 // layouts
 import Layout from '../../layouts';
@@ -30,8 +29,7 @@ GeneralApp.getLayout = function getLayout(page) {
 // ----------------------------------------------------------------------
 
 export default function GeneralApp() {
-  const { user } = useAuth();
-
+  // const { user } = useAuth();
   const theme = useTheme();
 
   const { themeStretch } = useSettings();
@@ -42,7 +40,7 @@ export default function GeneralApp() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
             <AppWelcome
-              title={`Welcome back! \n ${user?.displayName}`}
+              title={`Welcome back! \n `}
               description="If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything."
               img={
                 <SeoIllustration

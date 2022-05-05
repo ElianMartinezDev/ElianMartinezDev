@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Container, AppBar } from '@mui/material';
@@ -7,7 +7,8 @@ import { HEADER } from '../../../config';
 // components
 import { NavSectionHorizontal } from '../../../components/nav-section';
 //
-import navConfig from './NavConfig';
+import useAuth from '../../../hooks/useAuth';
+import { generateNavRoles } from '../../../utils/navUtils';
 
 // ----------------------------------------------------------------------
 
@@ -28,10 +29,18 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 function NavbarHorizontal() {
+  const { roles } = useAuth();
+  const [allMenu, setAllMenu] = useState([]);
+  useEffect(() => {
+    if (roles) {
+      const menuLinks = generateNavRoles(roles);
+      setAllMenu(menuLinks);
+    }
+  }, [roles]);
   return (
     <RootStyle>
       <Container maxWidth={false}>
-        <NavSectionHorizontal navConfig={navConfig} />
+        <NavSectionHorizontal navConfig={allMenu} />
       </Container>
     </RootStyle>
   );

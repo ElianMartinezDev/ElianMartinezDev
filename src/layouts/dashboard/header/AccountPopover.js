@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem } from '@mui/material';
 // routes
-import { PATH_DASHBOARD, PATH_AUTH } from '../../../routes/paths';
+import { PATH_AUTH } from '../../../routes/paths';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
@@ -106,10 +106,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {user?.displayName}
+            {user?.NOMBRE}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {user?.email}
+            {user?.GrupoName}
           </Typography>
         </Box>
 

@@ -26,6 +26,16 @@ const ICONS = {
   menuItem: getIcon('ic_menu_item'),
 };
 
+export const crearSubHeader = ({ title, icon, path, items = null }) => {
+  if (items === null) {
+    return { title, icon: getIcon(icon), path };
+  }
+  return { title, items, icon: getIcon(icon), path };
+};
+export const createItems = ({ title, path, children = null }) => ({ title, children, path });
+
+export const createItem = ({ title, path }) => ({ title, path });
+
 const navConfig = [
   // GENERAL
   // ----------------------------------------------------------------------
@@ -63,7 +73,6 @@ const navConfig = [
         title: 'item_by_roles',
         path: PATH_DASHBOARD.permissionDenied,
         icon: ICONS.menuItem,
-        roles: ['admin'],
         caption: 'only_admin_can_see_this_item',
       },
       {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
@@ -17,10 +17,11 @@ import Logo from '../../../components/Logo';
 import Scrollbar from '../../../components/Scrollbar';
 import { NavSectionVertical } from '../../../components/nav-section';
 //
-import navConfig from './NavConfig';
 import NavbarDocs from './NavbarDocs';
 import NavbarAccount from './NavbarAccount';
 import CollapseButton from './CollapseButton';
+import useAuth from '../../../hooks/useAuth';
+import { generateNavRoles } from '../../../utils/navUtils';
 
 // ----------------------------------------------------------------------
 
@@ -57,6 +58,15 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  const { roles } = useAuth();
+  const [allMenu, setAllMenu] = useState([]);
+  useEffect(() => {
+    if (roles) {
+      const menuLinks = generateNavRoles(roles);
+      setAllMenu(menuLinks);
+    }
+  }, [roles]);
+
   const renderContent = (
     <Scrollbar
       sx={{
@@ -85,7 +95,7 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }) {
         <NavbarAccount isCollapse={isCollapse} />
       </Stack>
 
-      <NavSectionVertical navConfig={navConfig} isCollapse={isCollapse} />
+      <NavSectionVertical navConfig={allMenu} isCollapse={isCollapse} />
 
       <Box sx={{ flexGrow: 1 }} />
 

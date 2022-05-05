@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // slices
-
-import productReducer from './slices/product';
+import authJwtReducer from './slices/authJwt';
 
 // ----------------------------------------------------------------------
 
@@ -28,15 +27,15 @@ const rootPersistConfig = {
   whitelist: [],
 };
 
-const productPersistConfig = {
-  key: 'product',
+const authPersistConfig = {
+  key: 'authJwt',
   storage,
   keyPrefix: 'redux-',
-  whitelist: ['sortBy', 'checkout'],
+  whitelist: ['isAuthenticated'],
 };
 
 const rootReducer = combineReducers({
-  product: persistReducer(productPersistConfig, productReducer),
+  authJwt: persistReducer(authPersistConfig, authJwtReducer),
 });
 
 export { rootPersistConfig, rootReducer };
