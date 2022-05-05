@@ -5,13 +5,14 @@ import { enUS, frFR, zhCN, viVN, arSD } from '@mui/material/locale';
 // API
 // ----------------------------------------------------------------------
 
-export const configApp = {
+const configApp = {
   baseUrl: process.env.HOST_API_KEY,
   baseUrl2: process.env.HOST_API2_KEY,
   nameApp: process.env.HOST_APP_NAME,
   api_key: process.env.APP_API,
   moneda: 'RD$',
 };
+export default configApp;
 export const MAPBOX_API = process.env.MAPBOX_API;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
