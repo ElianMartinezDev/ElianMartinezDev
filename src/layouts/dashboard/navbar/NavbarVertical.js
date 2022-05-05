@@ -60,7 +60,6 @@ export default function NavbarVertical({ isOpenSidebar, onCloseSidebar }) {
 
   const { roles } = useAuth();
   const [allMenu, setAllMenu] = useState([]);
-  console.log(allMenu);
   useEffect(() => {
     if (roles) {
       const menuLinks = generateNavRoles(roles);

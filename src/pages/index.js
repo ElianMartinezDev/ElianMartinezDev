@@ -9,7 +9,6 @@ import { PATH_AFTER_LOGIN } from '../config';
 
 export default function Index() {
   const { pathname, replace, prefetch } = useRouter();
-  console.log(pathname);
   useEffect(() => {
     if (pathname === '/') {
       replace(PATH_AFTER_LOGIN);
