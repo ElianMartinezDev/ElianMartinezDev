@@ -20,7 +20,7 @@ PermissionDenied.getLayout = function getLayout(page) {
 };
 
 // ----------------------------------------------------------------------
-const PermissionDenied2 = '';
+const PermissionDenied22 = '';
 export default function PermissionDenied() {
   const { themeStretch } = useSettings();
 
