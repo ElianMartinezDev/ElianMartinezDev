@@ -23,6 +23,7 @@ const whiteList = [
   PATH_PAGE.page404,
   PATH_PAGE.page500,
 ];
+const ar = null;
 export default function AuthGuard({ children }) {
   const { isAuthenticated, isLoading, roles } = useAuth();
   const { pathname, push } = useRouter();

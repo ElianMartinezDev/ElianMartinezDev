@@ -2,7 +2,6 @@
 import { useTheme } from '@mui/material/styles';
 import { Container, Grid, Stack, Button } from '@mui/material';
 // hooks
-import useAuth from '../../hooks/useAuth';
 import useSettings from '../../hooks/useSettings';
 // layouts
 import Layout from '../../layouts';

@@ -5,13 +5,12 @@ import { useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
 import Iconify from '../../../components/Iconify';
 import LoadingButton from '@mui/lab/LoadingButton';
-// import { MIconButton } from '../../components/@material-extend';
 import axios from '../../../utils/axios';
 // layouts
 import Layout from '../../../layouts';
 // material
 import HeaderDashboard from '../../../components/HeaderBreadcrumbs';
-import { TextField, Container, Grid, Card, Grow, InputLabel, MenuItem } from '@mui/material';
+import { TextField, IconButton, Container, Grid, Card, Grow, InputLabel, MenuItem } from '@mui/material';
 
 import Page from '../../../components/Page';
 import { PATH_DASHBOARD } from '../../../routes/paths';
@@ -90,15 +89,18 @@ export default function CompanyPage() {
           enqueueSnackbar('Se editó correctamente', {
             variant: 'success',
             action: (key) => (
-              //   <MIconButton size="small" onClick={() => closeSnackbar(key)}>
-              <Iconify icon={'ci:close-big'} width="16" height="16" />
-              //   </MIconButton>
+              <IconButton size="small" onClick={() => closeSnackbar(key)}>
+                <Iconify icon={'ci:close-big'} width="16" height="16" />
+              </IconButton>
             ),
           });
 
           setIsSend(false);
         }
-      } catch (err) {}
+      } catch (err) {
+        alert(JSON.stringify(err));
+        console.log(err);
+      }
     },
   });
 
@@ -149,7 +151,7 @@ export default function CompanyPage() {
                         name="idCiudad"
                         select
                         fullWidth
-                        defaultValue="5"
+                        defaultValue={5}
                         value={name}
                         onChange={changeValue}
                         error={Boolean(touched.idCiudad && errors.idCiudad)}
